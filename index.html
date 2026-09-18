@@ -1,1077 +1,1307 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bloom & Co. — Design Your Bouquet</title>
+<title>Bloom & Co. | Bouquet Designer</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
-:root {
-    --pink: #e86f92;
-    --deep-pink: #b83b63;
-    --cream: #fffaf5;
-    --green: #66856b;
-    --dark: #292225;
-    --gold: #c89b3c;
-    --soft-pink: #fde5ec;
+:root{
+    --dark:#292326;
+    --cream:#fffaf6;
+    --green:#648266;
+    --border:#eadfd9;
+    --muted:#8b7d80;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family: "DM Sans", sans-serif;
-    background: var(--cream);
-    color: var(--dark);
+body{
+    font-family:"DM Sans",sans-serif;
+    background:var(--cream);
+    color:var(--dark);
 }
 
-button {
-    font-family: inherit;
-    cursor: pointer;
+button{
+    font-family:inherit;
+    cursor:pointer;
 }
 
-/* NAVBAR */
+/* NAVIGATION */
 
-.navbar {
-    height: 75px;
-    background: rgba(255,250,245,.96);
-    border-bottom: 1px solid #eee2dc;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(10px);
+nav{
+    height:72px;
+    padding:0 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,250,246,.96);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(12px);
 }
 
-.logo {
-    font-family: "Playfair Display", serif;
-    font-size: 25px;
-    color: var(--deep-pink);
+.logo{
+    font-family:"Playfair Display",serif;
+    font-size:26px;
+    color:var(--pink);
 }
 
-.logo span {
-    color: var(--green);
+.logo span{
+    color:var(--green);
 }
 
-.nav-links {
-    display: flex;
-    gap: 28px;
-    font-size: 14px;
+nav .links{
+    display:flex;
+    gap:28px;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #51484b;
+nav a{
+    text-decoration:none;
+    color:#665b5e;
+    font-size:14px;
 }
 
-.cart {
-    border: none;
-    background: var(--dark);
-    color: white;
-    border-radius: 30px;
-    padding: 10px 18px;
+.cart-button{
+    border:0;
+    background:var(--dark);
+    color:white;
+    padding:10px 17px;
+    border-radius:30px;
 }
 
 /* HERO */
 
-.hero {
-    text-align: center;
-    padding: 70px 20px 45px;
+.hero{
+    text-align:center;
+    padding:70px 20px 45px;
     background:
-        radial-gradient(circle at 10% 20%, #fbdde8 0, transparent 25%),
-        radial-gradient(circle at 90% 20%, #e6f0df 0, transparent 25%),
-        var(--cream);
+        radial-gradient(circle at 10% 20%,#f9dce6,transparent 25%),
+        radial-gradient(circle at 90% 20%,#e1eddf,transparent 25%);
 }
 
-.hero h1 {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(40px, 7vw, 76px);
-    line-height: .95;
-    margin-bottom: 20px;
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(42px,7vw,75px);
+    line-height:.95;
+    margin-bottom:20px;
 }
 
-.hero h1 span {
-    color: var(--pink);
-    font-style: italic;
+.hero h1 span{
+    color:var(--pink);
+    font-style:italic;
 }
 
-.hero p {
-    max-width: 650px;
-    margin: auto;
-    color: #756b6e;
-    line-height: 1.7;
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:var(--muted);
+    line-height:1.7;
 }
 
-/* MAIN */
+/* BUILDER */
 
-.builder {
-    max-width: 1450px;
-    margin: auto;
-    padding: 40px 5% 80px;
+.builder{
+    max-width:1450px;
+    margin:auto;
+    padding:35px 4% 80px;
 }
 
-.layout {
-    display: grid;
-    grid-template-columns: 340px 1fr 340px;
-    gap: 25px;
-    align-items: start;
+.layout{
+    display:grid;
+    grid-template-columns:320px minmax(400px,1fr) 330px;
+    gap:22px;
 }
 
-/* PANELS */
-
-.panel {
-    background: white;
-    border: 1px solid #eee2dc;
-    border-radius: 25px;
-    padding: 25px;
-    box-shadow: 0 15px 50px rgba(73, 43, 49, .06);
+.panel{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:23px;
+    box-shadow:0 15px 50px rgba(60,35,42,.06);
 }
 
-.panel h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 25px;
-    margin-bottom: 8px;
+.panel h2{
+    font-family:"Playfair Display",serif;
+    font-size:25px;
+    margin-bottom:5px;
 }
 
-.panel-subtitle {
-    color: #8b8083;
-    font-size: 13px;
-    margin-bottom: 20px;
-}
-
-/* CATEGORIES */
-
-.categories {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-    margin-bottom: 22px;
-}
-
-.category {
-    border: 1px solid #eadfe0;
-    background: white;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-.category.active {
-    background: var(--dark);
-    color: white;
-}
-
-/* FLOWER OPTIONS */
-
-.flower-list {
-    display: grid;
-    gap: 10px;
-}
-
-.flower-option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px;
-    border-radius: 15px;
-    background: #fcf8f7;
-    border: 1px solid transparent;
-    transition: .2s;
-}
-
-.flower-option:hover {
-    border-color: var(--pink);
-    transform: translateY(-2px);
-}
-
-.flower-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 27px;
-}
-
-.flower-info {
-    flex: 1;
-}
-
-.flower-name {
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.flower-price {
-    color: #93878a;
-    font-size: 12px;
-}
-
-.add-flower {
-    border: none;
-    width: 31px;
-    height: 31px;
-    border-radius: 50%;
-    background: var(--pink);
-    color: white;
-    font-size: 20px;
-}
-
-/* CENTER CANVAS */
-
-.preview-panel {
-    min-height: 720px;
-    display: flex;
-    flex-direction: column;
-}
-
-.preview-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.preview-header h2 {
-    margin-bottom: 0;
-}
-
-.clear {
-    background: none;
-    border: none;
-    color: #aa566d;
-    font-size: 12px;
-}
-
-.bouquet-stage {
-    flex: 1;
-    min-height: 560px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    position: relative;
-    overflow: hidden;
+.subtitle{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:20px;
 }
 
 /* FLOWERS */
 
-.flower {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    animation: bloom .45s ease;
-    transition: transform .2s;
-    cursor: pointer;
-    z-index: 3;
+.categories{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
 }
 
-.flower:hover {
-    transform: scale(1.12);
+.category{
+    border:1px solid var(--border);
+    background:white;
+    border-radius:20px;
+    padding:8px 12px;
+    font-size:12px;
 }
 
-@keyframes bloom {
-    from {
-        transform: scale(0) rotate(-20deg);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1) rotate(0);
-        opacity: 1;
-    }
+.category.active{
+    background:var(--dark);
+    color:white;
 }
 
-.flower-center {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #e5b94e;
-    top: 26px;
-    left: 26px;
-    z-index: 4;
+.flower-list{
+    display:grid;
+    gap:9px;
 }
 
-.petal {
-    position: absolute;
-    width: 28px;
-    height: 38px;
-    border-radius: 50%;
-    top: 16px;
-    left: 21px;
-    transform-origin: 50% 100%;
+.flower-option{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    background:#fcf8f6;
+    border:1px solid transparent;
+    border-radius:15px;
 }
 
-.petal:nth-child(1) { transform: rotate(0deg) translateY(-15px); }
-.petal:nth-child(2) { transform: rotate(45deg) translateY(-15px); }
-.petal:nth-child(3) { transform: rotate(90deg) translateY(-15px); }
-.petal:nth-child(4) { transform: rotate(135deg) translateY(-15px); }
-.petal:nth-child(5) { transform: rotate(180deg) translateY(-15px); }
-.petal:nth-child(6) { transform: rotate(225deg) translateY(-15px); }
-.petal:nth-child(7) { transform: rotate(270deg) translateY(-15px); }
-.petal:nth-child(8) { transform: rotate(315deg) translateY(-15px); }
-
-/* DIFFERENT FLOWER TYPES */
-
-.flower.rose .petal {
-    width: 31px;
-    height: 34px;
-    border-radius: 60% 40% 55% 45%;
+.flower-option:hover{
+    border-color:var(--pink);
 }
 
-.flower.tulip .petal {
-    width: 30px;
-    height: 42px;
-    border-radius: 50% 50% 35% 35%;
+.flower-symbol{
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    font-size:28px;
+    border-radius:50%;
+    background:white;
 }
 
-.flower.tulip .flower-center {
-    display: none;
+.flower-info{
+    flex:1;
 }
 
-.flower.daisy .petal {
-    width: 20px;
-    height: 35px;
+.flower-name{
+    font-weight:600;
+    font-size:14px;
 }
 
-.flower.daisy .flower-center {
-    width: 22px;
-    height: 22px;
-    top: 24px;
-    left: 24px;
+.flower-price{
+    color:var(--muted);
+    font-size:12px;
 }
 
-/* STEM */
-
-.stems {
-    position: absolute;
-    bottom: 50px;
-    width: 250px;
-    height: 230px;
-    z-index: 1;
+.add{
+    border:0;
+    width:31px;
+    height:31px;
+    border-radius:50%;
+    background:var(--pink);
+    color:white;
+    font-size:20px;
 }
 
-.stem {
-    position: absolute;
-    width: 3px;
-    height: 240px;
-    background: #66856b;
-    left: 50%;
-    bottom: 0;
-    transform-origin: bottom;
+/* PREVIEW */
+
+.preview{
+    min-height:720px;
+    display:flex;
+    flex-direction:column;
 }
 
-/* WRAPPER */
-
-.wrapper {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 260px;
-    height: 250px;
-    clip-path: polygon(12% 0, 88% 0, 72% 100%, 28% 100%);
-    z-index: 4;
-    box-shadow: 0 -5px 20px rgba(0,0,0,.05);
+.preview-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.wrapper::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 35px;
-    height: 3px;
-    background: rgba(255,255,255,.4);
+.clear{
+    border:0;
+    background:none;
+    color:#a4546c;
+    font-size:12px;
 }
 
-/* WRAPPER STYLES */
-
-.wrapper.classic {
-    background: #f4eee3;
+.bouquet-area{
+    flex:1;
+    min-height:590px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
 }
 
-.wrapper.luxury {
-    background: linear-gradient(135deg, #191719, #42363b);
+/*
+    FLOWER AREA
+    Flowers are positioned in a large circle,
+    creating a natural hand-tied bouquet.
+*/
+
+.flower-canvas{
+    position:absolute;
+    width:430px;
+    height:420px;
+    bottom:170px;
+    left:50%;
+    transform:translateX(-50%);
 }
 
-.wrapper.luxury::before {
-    content: "BLOOM";
-    position: absolute;
-    color: #d6b65a;
-    font-family: "Playfair Display", serif;
-    font-size: 18px;
-    letter-spacing: 4px;
-    top: 115px;
-    left: 86px;
+/* STEM BUNDLE */
+
+.stem-bundle{
+    position:absolute;
+    bottom:82px;
+    left:50%;
+    transform:translateX(-50%);
+    width:135px;
+    height:170px;
+    z-index:3;
 }
 
-.wrapper.pink {
-    background: linear-gradient(135deg, #f6b6ca, #e77d9e);
+.stem-line{
+    position:absolute;
+    width:5px;
+    height:175px;
+    background:#5e7c60;
+    left:50%;
+    bottom:0;
+    border-radius:10px;
+    transform-origin:bottom center;
 }
 
-.wrapper.pastel {
-    background: linear-gradient(135deg, #dce9dc, #f7ddd8);
+.stem-line:nth-child(1){transform:rotate(-22deg);}
+.stem-line:nth-child(2){transform:rotate(-14deg);}
+.stem-line:nth-child(3){transform:rotate(-7deg);}
+.stem-line:nth-child(4){transform:rotate(0);}
+.stem-line:nth-child(5){transform:rotate(7deg);}
+.stem-line:nth-child(6){transform:rotate(14deg);}
+.stem-line:nth-child(7){transform:rotate(22deg);}
+
+/* LEAVES */
+
+.leaf{
+    position:absolute;
+    width:42px;
+    height:20px;
+    background:#668266;
+    border-radius:100% 0 100% 0;
 }
 
-.wrapper.wild {
+.leaf.l1{
+    left:20px;
+    bottom:115px;
+    transform:rotate(-35deg);
+}
+
+.leaf.l2{
+    right:18px;
+    bottom:145px;
+    transform:rotate(35deg) scaleX(-1);
+}
+
+.leaf.l3{
+    left:34px;
+    bottom:72px;
+    transform:rotate(-20deg);
+}
+
+/* WRAP */
+
+.wrap{
+    position:absolute;
+    z-index:4;
+    bottom:60px;
+    left:50%;
+    transform:translateX(-50%);
+    width:210px;
+    height:190px;
+    clip-path:polygon(4% 0,96% 0,72% 100%,28% 100%);
+}
+
+/* Different wrap styles */
+
+.wrap.cream{
+    background:#eee5d8;
+}
+
+.wrap.pink{
+    background:linear-gradient(145deg,#f7bfd0,#df7697);
+}
+
+.wrap.luxury{
+    background:linear-gradient(145deg,#181618,#40363b);
+}
+
+.wrap.pastel{
+    background:linear-gradient(145deg,#dce8d9,#f1d8dc);
+}
+
+.wrap.rustic{
     background:
         repeating-linear-gradient(
             -45deg,
-            #d9c8a6,
-            #d9c8a6 8px,
-            #c9b58d 8px,
-            #c9b58d 16px
+            #d9c6a0,
+            #d9c6a0 8px,
+            #c8b38b 8px,
+            #c8b38b 16px
         );
 }
 
-/* HANDLE */
-
-.handle {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85px;
-    height: 170px;
-    border-radius: 0 0 45px 45px;
-    border: 7px solid #96704d;
-    border-top: none;
-    z-index: 2;
+.wrap.luxury::after{
+    content:"BLOOM";
+    position:absolute;
+    top:75px;
+    left:65px;
+    color:#d6b55b;
+    font-family:"Playfair Display",serif;
+    letter-spacing:4px;
+    font-size:15px;
 }
 
-.handle.gold {
-    border-color: #c8a452;
+/*
+    IMPORTANT:
+    This is now a bouquet wrapper,
+    not a cup.
+*/
+
+.wrap-ribbon{
+    position:absolute;
+    z-index:6;
+    bottom:72px;
+    left:50%;
+    transform:translateX(-50%);
+    width:45px;
+    height:15px;
+    border-radius:8px;
+    background:#df6689;
 }
 
-.handle.white {
-    border-color: #ddd4c8;
+.wrap-ribbon::before,
+.wrap-ribbon::after{
+    content:"";
+    position:absolute;
+    width:27px;
+    height:25px;
+    border:3px solid #df6689;
+    top:-6px;
+    border-radius:50% 50% 50% 0;
 }
 
-.handle.black {
-    border-color: #262326;
+.wrap-ribbon::before{
+    left:-20px;
+    transform:rotate(-25deg);
 }
 
-.handle.wood {
-    border-color: #8d623d;
+.wrap-ribbon::after{
+    right:-20px;
+    transform:scaleX(-1) rotate(-25deg);
 }
 
-.handle.green {
-    border-color: #66856b;
+/* HANDLE / STEM END */
+
+.handle{
+    position:absolute;
+    z-index:5;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:92px;
+    height:105px;
+    border-radius:0 0 18px 18px;
+}
+
+.handle.wood{
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #8c613e,
+            #8c613e 8px,
+            #a9774b 8px,
+            #a9774b 13px
+        );
+}
+
+.handle.gold{
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #b18c39,
+            #b18c39 8px,
+            #d4b55d 8px,
+            #d4b55d 13px
+        );
+}
+
+.handle.white{
+    background:#e8e0d5;
+}
+
+.handle.black{
+    background:#272327;
+}
+
+.handle.green{
+    background:#668266;
+}
+
+/* FLOWERS */
+
+.flower{
+    position:absolute;
+    width:78px;
+    height:78px;
+    transform:translate(-50%,-50%);
+    z-index:5;
+    animation:appear .4s ease;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.3);
+    }
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
+    }
+}
+
+.petal{
+    position:absolute;
+    width:30px;
+    height:42px;
+    left:24px;
+    top:18px;
+    border-radius:50%;
+    transform-origin:50% 100%;
+}
+
+.petal:nth-child(1){transform:rotate(0deg) translateY(-14px);}
+.petal:nth-child(2){transform:rotate(45deg) translateY(-14px);}
+.petal:nth-child(3){transform:rotate(90deg) translateY(-14px);}
+.petal:nth-child(4){transform:rotate(135deg) translateY(-14px);}
+.petal:nth-child(5){transform:rotate(180deg) translateY(-14px);}
+.petal:nth-child(6){transform:rotate(225deg) translateY(-14px);}
+.petal:nth-child(7){transform:rotate(270deg) translateY(-14px);}
+.petal:nth-child(8){transform:rotate(315deg) translateY(-14px);}
+
+.center{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:#e4b949;
+    border-radius:50%;
+    left:30px;
+    top:30px;
+    z-index:3;
+}
+
+/* ROSE */
+
+.flower.rose .petal{
+    width:34px;
+    height:37px;
+    border-radius:65% 35% 60% 40%;
+}
+
+/* TULIP */
+
+.flower.tulip .petal{
+    width:33px;
+    height:46px;
+    border-radius:50% 50% 30% 30%;
+}
+
+.flower.tulip .center{
+    display:none;
+}
+
+/* DAISY */
+
+.flower.daisy .petal{
+    width:22px;
+    height:38px;
+}
+
+.flower.daisy .center{
+    width:24px;
+    height:24px;
+    left:27px;
+    top:27px;
+}
+
+/* EMPTY STATE */
+
+.empty{
+    position:absolute;
+    top:42%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:#9a8d90;
+}
+
+.empty .big{
+    font-size:55px;
+    margin-bottom:10px;
 }
 
 /* RIGHT PANEL */
 
-.selected-list {
-    display: grid;
-    gap: 8px;
-    margin-bottom: 25px;
+.section-title{
+    margin-top:20px;
+    margin-bottom:10px;
+    color:#9b8c90;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
-.selected-item {
-    display: flex;
-    justify-content: space-between;
-    background: #faf6f4;
-    padding: 11px;
-    border-radius: 12px;
-    font-size: 13px;
+.selected{
+    display:grid;
+    gap:7px;
 }
 
-.remove {
-    border: none;
-    background: none;
-    color: #a9516c;
+.selected-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px;
+    border-radius:12px;
+    background:#faf6f4;
+    font-size:13px;
 }
 
-.section-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #9a8c8e;
-    margin: 20px 0 10px;
+.remove{
+    border:0;
+    background:none;
+    color:#aa526d;
+    font-size:11px;
+}
+
+/* WRAPPING OPTIONS */
+
+.options{
+    display:grid;
+    gap:7px;
+}
+
+.style{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:12px;
+    padding:11px;
+    font-size:13px;
+}
+
+.style.active{
+    border:2px solid var(--pink);
+    background:#fff1f5;
 }
 
 /* HANDLE OPTIONS */
 
-.handle-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
+.handles{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
 }
 
-.handle-choice {
-    padding: 13px 8px;
-    border: 1px solid #e9dfdc;
-    border-radius: 13px;
-    background: white;
-    text-align: center;
-    font-size: 12px;
+.handle-option{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:10px;
+    text-align:center;
+    font-size:11px;
 }
 
-.handle-choice.active {
-    border: 2px solid var(--pink);
+.handle-option.active{
+    border:2px solid var(--pink);
 }
 
-.handle-sample {
-    width: 35px;
-    height: 35px;
-    margin: 0 auto 7px;
-    border-radius: 50%;
-    border: 6px solid #96704d;
+.handle-preview{
+    height:38px;
+    width:20px;
+    border-radius:0 0 7px 7px;
+    margin:0 auto 7px;
 }
 
-.handle-sample.gold { border-color: #c8a452; }
-.handle-sample.white { border-color: #ddd4c8; }
-.handle-sample.black { border-color: #262326; }
-.handle-sample.green { border-color: #66856b; }
-
-/* TOTAL */
-
-.total-box {
-    border-top: 1px solid #eee2dc;
-    margin-top: 25px;
-    padding-top: 20px;
+.handle-preview.wood{
+    background:#95663f;
 }
 
-.total-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    color: #776c70;
-    font-size: 14px;
+.handle-preview.gold{
+    background:#c4a24d;
 }
 
-.total-row.final {
-    font-size: 23px;
-    font-weight: 700;
-    color: var(--dark);
+.handle-preview.white{
+    background:#e4ddd3;
 }
 
-.add-cart {
-    width: 100%;
-    border: none;
-    background: var(--dark);
-    color: white;
-    padding: 16px;
-    border-radius: 15px;
-    margin-top: 10px;
-    font-weight: 600;
-    transition: .2s;
+.handle-preview.black{
+    background:#292529;
 }
 
-.add-cart:hover {
-    background: var(--deep-pink);
-    transform: translateY(-2px);
+.handle-preview.green{
+    background:#658166;
 }
 
-/* STYLE BUTTONS */
+/* PRICE */
 
-.style-options {
-    display: grid;
-    gap: 9px;
+.total{
+    border-top:1px solid var(--border);
+    margin-top:22px;
+    padding-top:18px;
 }
 
-.style-button {
-    border: 1px solid #eadfe0;
-    background: white;
-    padding: 13px;
-    border-radius: 13px;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:9px;
+    color:#776b6e;
+    font-size:13px;
 }
 
-.style-button.active {
-    border-color: var(--pink);
-    background: var(--soft-pink);
+.row.final{
+    color:var(--dark);
+    font-size:22px;
+    font-weight:700;
+    margin-top:8px;
 }
 
-/* NOTIFICATION */
-
-.toast {
-    position: fixed;
-    bottom: 25px;
-    left: 50%;
-    transform: translate(-50%, 120px);
-    background: #292225;
-    color: white;
-    padding: 14px 23px;
-    border-radius: 30px;
-    font-size: 14px;
-    z-index: 999;
-    transition: .35s;
+.checkout{
+    width:100%;
+    margin-top:10px;
+    padding:15px;
+    border:0;
+    background:var(--dark);
+    color:white;
+    border-radius:14px;
+    font-weight:600;
 }
 
-.toast.show {
-    transform: translate(-50%, 0);
+.checkout:hover{
+    background:var(--pink);
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translate(-50%,120px);
+    background:var(--dark);
+    color:white;
+    padding:13px 22px;
+    border-radius:30px;
+    font-size:13px;
+    z-index:999;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
 }
 
 /* FOOTER */
 
-footer {
-    background: #292225;
-    color: white;
-    text-align: center;
-    padding: 45px 20px;
+footer{
+    text-align:center;
+    background:var(--dark);
+    color:white;
+    padding:40px 20px;
 }
 
-footer h2 {
-    font-family: "Playfair Display", serif;
-    margin-bottom: 10px;
+footer h2{
+    font-family:"Playfair Display",serif;
+    margin-bottom:8px;
 }
 
-footer p {
-    color: #bcb2b4;
-    font-size: 13px;
+footer p{
+    color:#bbb1b4;
+    font-size:12px;
 }
 
 /* RESPONSIVE */
 
-@media(max-width:1100px) {
-    .layout {
-        grid-template-columns: 1fr 1fr;
+@media(max-width:1150px){
+
+    .layout{
+        grid-template-columns:300px 1fr;
     }
 
-    .preview-panel {
-        grid-column: 1 / -1;
-        grid-row: 1;
+    .preview{
+        grid-column:2;
+        grid-row:1 / span 2;
     }
+
 }
 
-@media(max-width:700px) {
+@media(max-width:750px){
 
-    .navbar {
-        padding: 0 20px;
+    nav{
+        padding:0 18px;
     }
 
-    .nav-links {
-        display: none;
+    nav .links{
+        display:none;
     }
 
-    .hero {
-        padding-top: 45px;
+    .builder{
+        padding:20px 12px 50px;
     }
 
-    .builder {
-        padding: 20px 15px 50px;
+    .layout{
+        display:flex;
+        flex-direction:column;
     }
 
-    .layout {
-        display: flex;
-        flex-direction: column;
+    .preview{
+        order:-1;
+        min-height:600px;
     }
 
-    .panel,
-    .preview-panel {
-        width: 100%;
+    .bouquet-area{
+        min-height:500px;
     }
 
-    .preview-panel {
-        order: -1;
-        min-height: 580px;
+    .flower-canvas{
+        transform:translateX(-50%) scale(.82);
+        transform-origin:bottom center;
     }
 
-    .bouquet-stage {
-        min-height: 430px;
-    }
-
-    .flower {
-        width: 55px;
-        height: 55px;
-        transform: scale(.85);
-    }
 }
 </style>
+
 </head>
 
 <body>
 
-<nav class="navbar">
-    <div class="logo">Bloom <span>&</span> Co.</div>
+<nav>
 
-    <div class="nav-links">
-        <a href="#designer">Designer</a>
-        <a href="#styles">Styles</a>
-        <a href="#about">About</a>
-    </div>
+```
+<div class="logo">
+    Bloom <span>&</span> Co.
+</div>
 
-    <button class="cart" onclick="showToast('Your bouquet has been saved! 💐')">
-        🛍 <span id="cartCount">0</span>
-    </button>
+<div class="links">
+    <a href="#designer">Designer</a>
+    <a href="#about">About</a>
+</div>
+
+<button class="cart-button" onclick="toast('Your bouquet is saved! 💐')">
+    🛍 <span id="cartCount">0</span>
+</button>
+```
+
 </nav>
 
 <section class="hero">
-    <h1>Design Your <span>Dream Bouquet</span></h1>
-    <p>
-        Pick your flowers, choose your colors, select your wrapping,
-        and create a bouquet that feels completely yours.
-    </p>
+
+```
+<h1>
+    Design Your
+    <span>Dream Bouquet</span>
+</h1>
+
+<p>
+    Choose your favorite blooms, create your own combination,
+    select your wrapping and finish it with a beautiful hand-tied handle.
+</p>
+```
+
 </section>
 
 <main class="builder" id="designer">
 
 <div class="layout">
 
-<!-- LEFT PANEL -->
+<!-- FLOWERS -->
 
 <section class="panel">
 
-    <h2>Choose Flowers</h2>
-    <p class="panel-subtitle">
-        Mix luxury blooms with colorful or wild flowers.
+```
+<h2>Choose Flowers</h2>
+
+<p class="subtitle">
+    Build your bouquet one bloom at a time.
+</p>
+
+<div class="categories">
+
+    <button class="category active"
+            onclick="filterFlowers('all',this)">
+        All
+    </button>
+
+    <button class="category"
+            onclick="filterFlowers('luxury',this)">
+        Luxury
+    </button>
+
+    <button class="category"
+            onclick="filterFlowers('colorful',this)">
+        Colorful
+    </button>
+
+    <button class="category"
+            onclick="filterFlowers('wild',this)">
+        Wild
+    </button>
+
+</div>
+
+<div id="flowerList" class="flower-list"></div>
+```
+
+</section>
+
+<!-- BOUQUET PREVIEW -->
+
+<section class="panel preview">
+
+```
+<div class="preview-top">
+
+    <h2>Your Bouquet</h2>
+
+    <button class="clear"
+            onclick="clearBouquet()">
+        Clear all
+    </button>
+
+</div>
+
+<div class="bouquet-area">
+
+    <div id="empty"
+         class="empty">
+
+        <div class="big">💐</div>
+
+        <div>
+            Start adding flowers
+        </div>
+
+    </div>
+
+
+    <div class="flower-canvas"
+         id="flowerCanvas">
+    </div>
+
+
+    <div class="stem-bundle">
+
+        <div class="stem-line"></div>
+        <div class="stem-line"></div>
+        <div class="stem-line"></div>
+        <div class="stem-line"></div>
+        <div class="stem-line"></div>
+        <div class="stem-line"></div>
+        <div class="stem-line"></div>
+
+        <div class="leaf l1"></div>
+        <div class="leaf l2"></div>
+        <div class="leaf l3"></div>
+
+    </div>
+
+
+    <div id="wrap"
+         class="wrap cream">
+    </div>
+
+    <div id="ribbon"
+         class="wrap-ribbon">
+    </div>
+
+    <div id="handle"
+         class="handle wood">
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- CUSTOMIZATION -->
+
+<section class="panel">
+
+```
+<h2>Your Design</h2>
+
+<p class="subtitle">
+    Make it uniquely yours.
+</p>
+
+
+<div class="section-title">
+    Selected Flowers
+</div>
+
+<div id="selected"
+     class="selected">
+
+    <p style="font-size:13px;color:#998c90;">
+        No flowers selected yet 🌷
     </p>
 
-    <div class="categories">
-        <button class="category active" onclick="filterFlowers('all', this)">All</button>
-        <button class="category" onclick="filterFlowers('luxury', this)">Luxury</button>
-        <button class="category" onclick="filterFlowers('colorful', this)">Colorful</button>
-        <button class="category" onclick="filterFlowers('wild', this)">Wild</button>
+</div>
+
+
+<div class="section-title">
+    Wrapping
+</div>
+
+<div class="options">
+
+    <button class="style active"
+            onclick="setWrap('cream',120,this)">
+        <span>Classic Cream</span>
+        🤍
+    </button>
+
+    <button class="style"
+            onclick="setWrap('pink',150,this)">
+        <span>Pretty Pink</span>
+        🎀
+    </button>
+
+    <button class="style"
+            onclick="setWrap('luxury',250,this)">
+        <span>Luxury Black</span>
+        🖤
+    </button>
+
+    <button class="style"
+            onclick="setWrap('pastel',180,this)">
+        <span>Pastel Garden</span>
+        🌿
+    </button>
+
+    <button class="style"
+            onclick="setWrap('rustic',140,this)">
+        <span>Wild Rustic</span>
+        🌾
+    </button>
+
+</div>
+
+
+<div class="section-title">
+    Handle
+</div>
+
+<div class="handles">
+
+    <button class="handle-option active"
+            onclick="setHandle('wood',80,this)">
+
+        <div class="handle-preview wood"></div>
+
+        Natural Wood
+
+    </button>
+
+
+    <button class="handle-option"
+            onclick="setHandle('gold',350,this)">
+
+        <div class="handle-preview gold"></div>
+
+        Luxury Gold
+
+    </button>
+
+
+    <button class="handle-option"
+            onclick="setHandle('white',180,this)">
+
+        <div class="handle-preview white"></div>
+
+        Pearl White
+
+    </button>
+
+
+    <button class="handle-option"
+            onclick="setHandle('black',220,this)">
+
+        <div class="handle-preview black"></div>
+
+        Matte Black
+
+    </button>
+
+
+    <button class="handle-option"
+            onclick="setHandle('green',120,this)">
+
+        <div class="handle-preview green"></div>
+
+        Garden Green
+
+    </button>
+
+</div>
+
+
+<div class="total">
+
+    <div class="row">
+        <span>Flowers</span>
+        <span id="flowerTotal">₱0</span>
     </div>
 
-    <div class="flower-list" id="flowerList"></div>
-
-</section>
-
-
-<!-- CENTER PREVIEW -->
-
-<section class="panel preview-panel">
-
-    <div class="preview-header">
-        <h2>Your Bouquet</h2>
-        <button class="clear" onclick="clearBouquet()">Clear bouquet</button>
+    <div class="row">
+        <span>Wrapping</span>
+        <span id="wrapTotal">₱120</span>
     </div>
 
-    <div class="bouquet-stage" id="bouquetStage">
-
-        <div class="stems" id="stems"></div>
-
-        <div class="wrapper classic" id="wrapper"></div>
-
-        <div class="handle wood" id="handle"></div>
-
+    <div class="row">
+        <span>Handle</span>
+        <span id="handleTotal">₱80</span>
     </div>
 
-</section>
-
-
-<!-- RIGHT PANEL -->
-
-<section class="panel">
-
-    <h2>Your Design</h2>
-    <p class="panel-subtitle">Customize every little detail.</p>
-
-    <div class="section-title">Selected Flowers</div>
-
-    <div class="selected-list" id="selectedList">
-        <p style="color:#9a8c8e;font-size:13px;">
-            Your bouquet is waiting for its first flower 🌷
-        </p>
+    <div class="row final">
+        <span>Total</span>
+        <span id="grandTotal">₱200</span>
     </div>
 
+    <button class="checkout"
+            onclick="addToCart()">
 
-    <div class="section-title">Bouquet Style</div>
+        Add Bouquet to Cart 💐
 
-    <div class="style-options">
+    </button>
 
-        <button class="style-button active"
-                onclick="setWrapper('classic', this)">
-            <span>Classic Cream</span>
-            🤍
-        </button>
-
-        <button class="style-button"
-                onclick="setWrapper('luxury', this)">
-            <span>Luxury Black</span>
-            🖤
-        </button>
-
-        <button class="style-button"
-                onclick="setWrapper('pink', this)">
-            <span>Pretty Pink</span>
-            🎀
-        </button>
-
-        <button class="style-button"
-                onclick="setWrapper('pastel', this)">
-            <span>Pastel Garden</span>
-            🌿
-        </button>
-
-        <button class="style-button"
-                onclick="setWrapper('wild', this)">
-            <span>Wild & Rustic</span>
-            🌾
-        </button>
-
-    </div>
-
-
-    <div class="section-title">Handle</div>
-
-    <div class="handle-options">
-
-        <button class="handle-choice active"
-                onclick="setHandle('wood', this)">
-            <div class="handle-sample"></div>
-            Natural Wood
-        </button>
-
-        <button class="handle-choice"
-                onclick="setHandle('gold', this)">
-            <div class="handle-sample gold"></div>
-            Gold
-        </button>
-
-        <button class="handle-choice"
-                onclick="setHandle('white', this)">
-            <div class="handle-sample white"></div>
-            Pearl White
-        </button>
-
-        <button class="handle-choice"
-                onclick="setHandle('black', this)">
-            <div class="handle-sample black"></div>
-            Matte Black
-        </button>
-
-        <button class="handle-choice"
-                onclick="setHandle('green', this)">
-            <div class="handle-sample green"></div>
-            Garden Green
-        </button>
-
-    </div>
-
-
-    <div class="total-box">
-
-        <div class="total-row">
-            <span>Flowers</span>
-            <span id="flowerTotal">₱0</span>
-        </div>
-
-        <div class="total-row">
-            <span>Wrapping</span>
-            <span id="wrapTotal">₱120</span>
-        </div>
-
-        <div class="total-row">
-            <span>Handle</span>
-            <span id="handleTotal">₱80</span>
-        </div>
-
-        <div class="total-row final">
-            <span>Total</span>
-            <span id="grandTotal">₱200</span>
-        </div>
-
-        <button class="add-cart" onclick="addToCart()">
-            Add Bouquet to Cart 💐
-        </button>
-
-    </div>
+</div>
+```
 
 </section>
 
 </div>
+
 </main>
 
-
 <footer id="about">
-    <h2>Bloom & Co.</h2>
-    <p>Flowers made personal. Designed by you. 🌸</p>
+
+```
+<h2>Bloom & Co.</h2>
+
+<p>
+    Beautiful flowers. Designed by you.
+</p>
+```
+
 </footer>
 
-
-<div class="toast" id="toast"></div>
-
+<div id="toast"
+     class="toast">
+</div>
 
 <script>
 
-/* =========================
-   FLOWER DATABASE
-========================= */
+/* ============================
+   FLOWER DATA
+============================ */
 
 const flowers = [
 
     {
-        id: "rose",
-        name: "Velvet Rose",
-        emoji: "🌹",
-        price: 120,
-        color: "#d94c6a",
-        category: "luxury"
+        id:"rose",
+        name:"Velvet Rose",
+        emoji:"🌹",
+        price:120,
+        color:"#d94c6a",
+        category:"luxury"
     },
 
     {
-        id: "peony",
-        name: "Blush Peony",
-        emoji: "🌸",
-        price: 150,
-        color: "#f5a5b9",
-        category: "luxury"
+        id:"peony",
+        name:"Blush Peony",
+        emoji:"🌸",
+        price:150,
+        color:"#f3a4b8",
+        category:"luxury"
     },
 
     {
-        id: "orchid",
-        name: "Orchid",
-        emoji: "🌺",
-        price: 180,
-        color: "#9b68b5",
-        category: "luxury"
+        id:"orchid",
+        name:"Orchid",
+        emoji:"🌺",
+        price:180,
+        color:"#9566b3",
+        category:"luxury"
     },
 
     {
-        id: "tulip",
-        name: "Pink Tulip",
-        emoji: "🌷",
-        price: 90,
-        color: "#f27c9d",
-        category: "colorful"
+        id:"hydrangea",
+        name:"Hydrangea",
+        emoji:"💠",
+        price:130,
+        color:"#7190cf",
+        category:"luxury"
     },
 
     {
-        id: "sunflower",
-        name: "Sunflower",
-        emoji: "🌻",
-        price: 80,
-        color: "#f2bf38",
-        category: "colorful"
+        id:"tulip",
+        name:"Pink Tulip",
+        emoji:"🌷",
+        price:90,
+        color:"#ef789a",
+        category:"colorful"
     },
 
     {
-        id: "daisy",
-        name: "Daisy",
-        emoji: "🌼",
-        price: 65,
-        color: "#fff4d4",
-        category: "wild"
+        id:"sunflower",
+        name:"Sunflower",
+        emoji:"🌻",
+        price:80,
+        color:"#f2bc38",
+        category:"colorful"
     },
 
     {
-        id: "lavender",
-        name: "Lavender",
-        emoji: "💜",
-        price: 75,
-        color: "#9b83c4",
-        category: "wild"
+        id:"carnation",
+        name:"Carnation",
+        emoji:"🌺",
+        price:70,
+        color:"#ec7695",
+        category:"colorful"
     },
 
     {
-        id: "baby",
-        name: "Baby's Breath",
-        emoji: "🤍",
-        price: 60,
-        color: "#ffffff",
-        category: "wild"
+        id:"daisy",
+        name:"Daisy",
+        emoji:"🌼",
+        price:65,
+        color:"#fff1c9",
+        category:"wild"
     },
 
     {
-        id: "carnation",
-        name: "Carnation",
-        emoji: "🌺",
-        price: 70,
-        color: "#ee7897",
-        category: "colorful"
+        id:"lavender",
+        name:"Lavender",
+        emoji:"💜",
+        price:75,
+        color:"#9981c0",
+        category:"wild"
     },
 
     {
-        id: "hydrangea",
-        name: "Hydrangea",
-        emoji: "💠",
-        price: 130,
-        color: "#7894d1",
-        category: "luxury"
+        id:"baby",
+        name:"Baby's Breath",
+        emoji:"🤍",
+        price:60,
+        color:"#ffffff",
+        category:"wild"
     }
 
 ];
 
 
-/* =========================
+/* ============================
    STATE
-========================= */
+============================ */
 
-let bouquet = [];
+let bouquet=[];
 
-let wrapperPrice = 120;
-let handlePrice = 80;
+let wrapPrice=120;
 
-let cartCount = 0;
+let handlePrice=80;
+
+let cart=0;
 
 
-/* =========================
+/* ============================
    FLOWER LIST
-========================= */
+============================ */
 
-function renderFlowers(category = "all") {
+function renderFlowers(category="all"){
 
-    const list = document.getElementById("flowerList");
+    const list=document.getElementById("flowerList");
 
-    list.innerHTML = "";
+    list.innerHTML="";
 
     flowers
-        .filter(f => category === "all" || f.category === category)
-        .forEach(flower => {
+        .filter(f =>
+            category==="all" ||
+            f.category===category
+        )
+        .forEach(f=>{
 
-            const item = document.createElement("div");
+            const div=document.createElement("div");
 
-            item.className = "flower-option";
+            div.className="flower-option";
 
-            item.innerHTML = `
+            div.innerHTML=`
 
-                <div
-                    class="flower-icon"
-                    style="background:${flower.color}33"
-                >
-                    ${flower.emoji}
+                <div class="flower-symbol">
+                    ${f.emoji}
                 </div>
 
                 <div class="flower-info">
+
                     <div class="flower-name">
-                        ${flower.name}
+                        ${f.name}
                     </div>
 
                     <div class="flower-price">
-                        ₱${flower.price}
+                        ₱${f.price}
                     </div>
+
                 </div>
 
-                <button
-                    class="add-flower"
-                    onclick="addFlower('${flower.id}')"
-                >
+                <button class="add"
+                        onclick="addFlower('${f.id}')">
                     +
                 </button>
-
             `;
 
-            list.appendChild(item);
+            list.appendChild(div);
 
         });
-}
 
+}
 
 renderFlowers();
 
 
-/* =========================
+/* ============================
    FILTER
-========================= */
+============================ */
 
-function filterFlowers(category, button) {
+function filterFlowers(category,button){
 
     document
         .querySelectorAll(".category")
-        .forEach(b => b.classList.remove("active"));
+        .forEach(b=>b.classList.remove("active"));
 
     button.classList.add("active");
 
@@ -1079,360 +1309,386 @@ function filterFlowers(category, button) {
 }
 
 
-/* =========================
+/* ============================
    ADD FLOWER
-========================= */
+============================ */
 
-function addFlower(id) {
+function addFlower(id){
 
-    const flower = flowers.find(f => f.id === id);
+    const flower=flowers.find(f=>f.id===id);
 
-    if (!flower) return;
+    if(!flower) return;
 
     bouquet.push({
         ...flower,
-        uniqueId: Date.now() + Math.random()
+        uid:Date.now()+Math.random()
     });
 
-    renderBouquet();
-    renderSelected();
+    render();
 
-    showToast(`${flower.name} added 🌸`);
+    toast(`${flower.name} added 🌸`);
 }
 
 
-/* =========================
+/* ============================
    REMOVE FLOWER
-========================= */
+============================ */
 
-function removeFlower(uniqueId) {
+function removeFlower(uid){
 
-    bouquet = bouquet.filter(
-        flower => flower.uniqueId !== uniqueId
+    bouquet=bouquet.filter(
+        f=>f.uid!==uid
     );
 
-    renderBouquet();
-    renderSelected();
+    render();
 }
 
 
-/* =========================
-   SELECTED FLOWERS
-========================= */
+/* ============================
+   MAIN RENDER
+============================ */
 
-function renderSelected() {
+function render(){
 
-    const list = document.getElementById("selectedList");
+    renderSelected();
 
-    list.innerHTML = "";
+    renderBouquet();
 
-    if (bouquet.length === 0) {
+    updatePrice();
 
-        list.innerHTML = `
-            <p style="color:#9a8c8e;font-size:13px;">
-                Your bouquet is waiting for its first flower 🌷
+}
+
+
+/* ============================
+   SELECTED LIST
+============================ */
+
+function renderSelected(){
+
+    const selected=
+        document.getElementById("selected");
+
+    selected.innerHTML="";
+
+    if(bouquet.length===0){
+
+        selected.innerHTML=`
+            <p style="
+                font-size:13px;
+                color:#998c90;
+            ">
+                No flowers selected yet 🌷
             </p>
         `;
-
-    } else {
-
-        bouquet.forEach(flower => {
-
-            const item = document.createElement("div");
-
-            item.className = "selected-item";
-
-            item.innerHTML = `
-
-                <span>
-                    ${flower.emoji}
-                    ${flower.name}
-                </span>
-
-                <button
-                    class="remove"
-                    onclick="removeFlower(${flower.uniqueId})"
-                >
-                    Remove
-                </button>
-
-            `;
-
-            list.appendChild(item);
-
-        });
-
-    }
-
-    updatePrice();
-}
-
-
-/* =========================
-   RENDER BOUQUET
-========================= */
-
-function renderBouquet() {
-
-    const stage = document.getElementById("bouquetStage");
-
-    document
-        .querySelectorAll(".flower")
-        .forEach(el => el.remove());
-
-    const maxFlowers = 18;
-
-    const visibleFlowers = bouquet.slice(-maxFlowers);
-
-    visibleFlowers.forEach((flower, index) => {
-
-        const el = document.createElement("div");
-
-        el.className = `flower ${flower.id}`;
-
-        const angle =
-            (index / Math.max(visibleFlowers.length, 1)) * Math.PI * 2;
-
-        const radius =
-            Math.min(100, 25 + visibleFlowers.length * 3);
-
-        const centerX = 50;
-        const centerY = 44;
-
-        const x =
-            centerX +
-            Math.cos(angle) * radius / 2;
-
-        const y =
-            centerY +
-            Math.sin(angle) * radius / 2;
-
-        el.style.left = `calc(${x}% - 35px)`;
-        el.style.top = `${y}%`;
-
-        const petals = flower.id === "baby" ? 5 : 8;
-
-        for (let i = 0; i < petals; i++) {
-
-            const petal = document.createElement("div");
-
-            petal.className = "petal";
-
-            petal.style.background = flower.color;
-
-            el.appendChild(petal);
-        }
-
-        const center = document.createElement("div");
-
-        center.className = "flower-center";
-
-        el.appendChild(center);
-
-        stage.appendChild(el);
-
-    });
-
-    renderStems();
-}
-
-
-/* =========================
-   STEMS
-========================= */
-
-function renderStems() {
-
-    const container = document.getElementById("stems");
-
-    container.innerHTML = "";
-
-    const count =
-        Math.min(Math.max(bouquet.length, 3), 14);
-
-    for (let i = 0; i < count; i++) {
-
-        const stem = document.createElement("div");
-
-        stem.className = "stem";
-
-        const rotation =
-            -35 + (i / Math.max(count - 1, 1)) * 70;
-
-        stem.style.transform =
-            `rotate(${rotation}deg)`;
-
-        container.appendChild(stem);
-    }
-}
-
-
-/* =========================
-   WRAPPER
-========================= */
-
-function setWrapper(style, button) {
-
-    const wrapper =
-        document.getElementById("wrapper");
-
-    wrapper.className =
-        `wrapper ${style}`;
-
-    document
-        .querySelectorAll(".style-button")
-        .forEach(b => b.classList.remove("active"));
-
-    button.classList.add("active");
-
-    if (style === "luxury") {
-        wrapperPrice = 250;
-    } else if (style === "pink") {
-        wrapperPrice = 150;
-    } else if (style === "pastel") {
-        wrapperPrice = 180;
-    } else if (style === "wild") {
-        wrapperPrice = 140;
-    } else {
-        wrapperPrice = 120;
-    }
-
-    document.getElementById("wrapTotal").textContent =
-        `₱${wrapperPrice}`;
-
-    updatePrice();
-}
-
-
-/* =========================
-   HANDLE
-========================= */
-
-function setHandle(style, button) {
-
-    const handle =
-        document.getElementById("handle");
-
-    handle.className =
-        `handle ${style}`;
-
-    document
-        .querySelectorAll(".handle-choice")
-        .forEach(b => b.classList.remove("active"));
-
-    button.classList.add("active");
-
-    const prices = {
-        wood: 80,
-        gold: 350,
-        white: 180,
-        black: 220,
-        green: 120
-    };
-
-    handlePrice = prices[style];
-
-    document.getElementById("handleTotal").textContent =
-        `₱${handlePrice}`;
-
-    updatePrice();
-}
-
-
-/* =========================
-   PRICE
-========================= */
-
-function updatePrice() {
-
-    const flowerTotal =
-        bouquet.reduce(
-            (sum, flower) => sum + flower.price,
-            0
-        );
-
-    const total =
-        flowerTotal +
-        wrapperPrice +
-        handlePrice;
-
-    document.getElementById("flowerTotal")
-        .textContent = `₱${flowerTotal}`;
-
-    document.getElementById("grandTotal")
-        .textContent = `₱${total}`;
-}
-
-
-/* =========================
-   CLEAR
-========================= */
-
-function clearBouquet() {
-
-    bouquet = [];
-
-    renderBouquet();
-    renderSelected();
-
-    showToast("Bouquet cleared 🌿");
-}
-
-
-/* =========================
-   CART
-========================= */
-
-function addToCart() {
-
-    if (bouquet.length === 0) {
-
-        showToast(
-            "Add at least one flower first 🌷"
-        );
 
         return;
     }
 
-    cartCount++;
+    bouquet.forEach(f=>{
+
+        const item=
+            document.createElement("div");
+
+        item.className="selected-item";
+
+        item.innerHTML=`
+
+            <span>
+                ${f.emoji} ${f.name}
+            </span>
+
+            <button
+                class="remove"
+                onclick="removeFlower(${f.uid})">
+
+                Remove
+
+            </button>
+        `;
+
+        selected.appendChild(item);
+
+    });
+
+}
+
+
+/* ============================
+   BOUQUET
+============================ */
+
+function renderBouquet(){
+
+    const canvas=
+        document.getElementById("flowerCanvas");
+
+    const empty=
+        document.getElementById("empty");
+
+    canvas.innerHTML="";
+
+    if(bouquet.length===0){
+
+        empty.style.display="block";
+
+        return;
+
+    }
+
+    empty.style.display="none";
+
+
+    /*
+       Flower arrangement:
+
+       Flowers are arranged from the
+       outside toward the center,
+       giving the bouquet a rounded,
+       hand-tied appearance.
+    */
+
+    const visible=
+        bouquet.slice(-19);
+
+    const positions=[];
+
+    const count=visible.length;
+
+    for(let i=0;i<count;i++){
+
+        const angle=
+            Math.PI*2*i/count - Math.PI/2;
+
+        let radius;
+
+        if(count<=5){
+            radius=35;
+        }else if(count<=10){
+            radius=65;
+        }else{
+            radius=85;
+        }
+
+        const x=
+            215 +
+            Math.cos(angle)*radius;
+
+        const y=
+            175 +
+            Math.sin(angle)*radius*.72;
+
+        positions.push({x,y});
+
+    }
+
+
+    visible.forEach((flower,index)=>{
+
+        const el=
+            document.createElement("div");
+
+        el.className=
+            `flower ${flower.id}`;
+
+        el.style.left=
+            positions[index].x+"px";
+
+        el.style.top=
+            positions[index].y+"px";
+
+        /*
+            Flowers added later sit slightly
+            closer to the front.
+        */
+
+        el.style.zIndex=
+            5+index;
+
+
+        for(let i=0;i<8;i++){
+
+            const petal=
+                document.createElement("div");
+
+            petal.className="petal";
+
+            petal.style.background=
+                flower.color;
+
+            el.appendChild(petal);
+
+        }
+
+
+        const center=
+            document.createElement("div");
+
+        center.className="center";
+
+        el.appendChild(center);
+
+        canvas.appendChild(el);
+
+    });
+
+}
+
+
+/* ============================
+   WRAPPING
+============================ */
+
+function setWrap(style,price,button){
+
+    const wrap=
+        document.getElementById("wrap");
+
+    wrap.className=
+        `wrap ${style}`;
+
+    wrapPrice=price;
+
+    document
+        .querySelectorAll(".style")
+        .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.getElementById("wrapTotal")
+        .textContent=`₱${price}`;
+
+    updatePrice();
+
+}
+
+
+/* ============================
+   HANDLE
+============================ */
+
+function setHandle(style,price,button){
+
+    const handle=
+        document.getElementById("handle");
+
+    handle.className=
+        `handle ${style}`;
+
+    handlePrice=price;
+
+    document
+        .querySelectorAll(".handle-option")
+        .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.getElementById("handleTotal")
+        .textContent=`₱${price}`;
+
+    updatePrice();
+
+}
+
+
+/* ============================
+   PRICE
+============================ */
+
+function updatePrice(){
+
+    const flowerTotal=
+        bouquet.reduce(
+            (sum,f)=>sum+f.price,
+            0
+        );
+
+    const total=
+        flowerTotal+
+        wrapPrice+
+        handlePrice;
+
+    document.getElementById("flowerTotal")
+        .textContent=`₱${flowerTotal}`;
+
+    document.getElementById("grandTotal")
+        .textContent=`₱${total}`;
+
+}
+
+
+/* ============================
+   CLEAR
+============================ */
+
+function clearBouquet(){
+
+    bouquet=[];
+
+    render();
+
+    toast("Bouquet cleared 🌿");
+
+}
+
+
+/* ============================
+   CART
+============================ */
+
+function addToCart(){
+
+    if(bouquet.length===0){
+
+        toast(
+            "Please add flowers first 🌷"
+        );
+
+        return;
+
+    }
+
+    cart++;
 
     document.getElementById("cartCount")
-        .textContent = cartCount;
+        .textContent=cart;
 
-    showToast(
-        "Your custom bouquet was added to the cart! 💐"
+    toast(
+        "Custom bouquet added to cart! 💐"
     );
+
 }
 
 
-/* =========================
+/* ============================
    TOAST
-========================= */
+============================ */
 
-function showToast(message) {
+function toast(message){
 
-    const toast =
+    const el=
         document.getElementById("toast");
 
-    toast.textContent = message;
+    el.textContent=message;
 
-    toast.classList.add("show");
+    el.classList.add("show");
 
-    setTimeout(() => {
+    clearTimeout(window.toastTimer);
 
-        toast.classList.remove("show");
+    window.toastTimer=
+        setTimeout(()=>{
 
-    }, 2500);
+            el.classList.remove("show");
+
+        },2500);
+
 }
 
 
-/* =========================
-   INITIAL BOUQUET
-========================= */
+/* ============================
+   START EMPTY
+============================ */
 
-addFlower("rose");
-addFlower("peony");
-addFlower("baby");
+render();
 
 </script>
 
